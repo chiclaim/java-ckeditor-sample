@@ -43,7 +43,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.filebrowserImageBrowseUrl ='ckfinder/ckfinder.html?Type=Images';
 	config.filebrowserFlashBrowseUrl ='ckfinder/ckfinder.html?Type=Flash'; 
 	config.filebrowserUploadUrl ='ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files';
-	//config.filebrowserImageUploadUrl ='ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images';
+	config.filebrowserImageUploadUrl ='ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images';
 	config.filebrowserFlashUploadUrl ='ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash';
 
 	//自定义上传处理器
