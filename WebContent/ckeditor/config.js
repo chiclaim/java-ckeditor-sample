@@ -36,13 +36,16 @@ CKEDITOR.editorConfig = function( config ) {
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	
+
 	// I add 
+	config.image_previewText=' '; //预览区域显示内容  
 	config.filebrowserBrowseUrl ='ckfinder/ckfinder.html';
 	config.filebrowserImageBrowseUrl ='ckfinder/ckfinder.html?Type=Images';
 	config.filebrowserFlashBrowseUrl ='ckfinder/ckfinder.html?Type=Flash'; 
 	config.filebrowserUploadUrl ='ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files';
-	config.filebrowserImageUploadUrl ='ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images';
+	//config.filebrowserImageUploadUrl ='ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images';
 	config.filebrowserFlashUploadUrl ='ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash';
 
-
+	//自定义上传处理器
+	//config.filebrowserImageUploadUrl = 'fileUploadServlet.do';
 };
