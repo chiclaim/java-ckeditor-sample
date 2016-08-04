@@ -1,0 +1,765 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <style type="text/css">
+    html {
+      -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+      -webkit-tap-highlight-color:transparent;
+    }
+    h1,h2,h3,h4,h5,h6 {
+      margin: .7em 0;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1 { font-size: 24px }
+    h2 { font-size: 22px }
+    h3 { font-size: 20px }
+    h4 { font-size: 18px }
+    h5,
+    h6 { font-size: 17px }
+    img { max-width:100% }
+    hr {
+      border: none;
+      border-bottom: 1px solid #d5d5d5;
+      margin-bottom: 25px;
+    }
+    /* 引用的样式 */
+    blockquote {
+      margin: 0 0 25px 0;
+      padding: 20px;
+      font-weight: 100;
+      word-break: break-all;
+      border-left: 4px solid #999;
+      background-color: #f6f6f6;
+    }
+    blockquote p:last-child { margin-bottom: 0 }
+    /* 列表的样式 */
+    ol,ul { margin-bottom: 25px }
+    ol li,
+    ul li { line-height: 1.7em }
+    ol li ol,
+    ul li ul { margin-top: 15px }
+    /*代码块和inline代码的样式*/
+    pre {
+      padding: 10px 10px 8px;
+      margin-bottom: 25px;
+      overflow: auto;
+      word-wrap: normal;
+      word-break: break-all;
+      white-space: pre;
+      border: 1px solid rgba(0,0,0,0.15);
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+      font-size: 12px;
+      line-height: 18px;
+    }
+    pre code {
+      padding: 0;
+      background-color: transparent;
+      white-space: pre;
+    }
+    code {
+      padding: 2px 4px;
+      background-color: #fdf6e3;
+      border: none;
+      white-space: pre-wrap;
+      color: #657b83;
+      font-size: 12px;
+    }
+    /* 表单的样式 */
+    table {
+      margin-bottom: 25px;
+      border: 1px solid #d9d9d9;
+      border-collapse: collapse;
+      border-left: none;
+    }
+    table thead th { vertical-align: bottom }
+    table th { font-weight: bold }
+    table th,
+    table td {
+      padding: 8px;
+      border-left: 1px solid #d9d9d9;
+      border-top: 1px solid #d9d9d9;
+      line-height: 1.5em;
+      vertical-align: top;
+    }
+    /* 文章图片和注释样式 */
+    .image-package {
+      margin: 0 auto 25px;
+      line-height: 1;
+      text-align: center;
+    }
+    .image-package .image-caption {
+      display: inline-block;
+      min-width: 20%;
+      min-height: 20px;
+      border-bottom: 1px solid #d9d9d9;
+      margin: 0 auto;
+      padding: 10px;
+      font-size: 14px;
+      color: #999;
+      font-style: italic;
+      line-height: 150%;
+    }
+    .image-package .image-caption:empty { display: none }
+    /* 内容部分*/
+    .content {
+      font-size: 17px;
+      line-height: 1.5;
+      color: #2f2f2f;
+      word-break: break-all;
+    }
+    a {
+      color: #28a1c5;
+      text-decoration: none;
+    }
+    .content p {
+      margin: 0 0 20px 0;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+    /* Style For Code-Block Highlight */
+    pre,
+    .hljs {
+      background: #fdf6e3;
+      color: #657b83;
+      -webkit-text-size-adjust: none;
+    }
+    .hljs-comment,
+    .diff .hljs-header,
+    .hljs-doctype,
+    .hljs-pi,
+    .lisp .hljs-string { color: #93a1a1 }
+    /* Solarized Green */
+    .hljs-keyword,
+    .hljs-winutils,
+    .method,
+    .hljs-addition,
+    .css .hljs-tag,
+    .hljs-request,
+    .hljs-status,
+    .nginx .hljs-title { color: #859900 }
+    /* Solarized Cyan */
+    .hljs-number,
+    .hljs-command,
+    .hljs-string,
+    .hljs-tag .hljs-value,
+    .hljs-rule .hljs-value,
+    .hljs-doctag,
+    .tex .hljs-formula,
+    .hljs-regexp,
+    .hljs-hexcolor,
+    .hljs-link_url { color: #2aa198 }
+    /* Solarized Blue */
+    .hljs-title,
+    .hljs-localvars,
+    .hljs-chunk,
+    .hljs-decorator,
+    .hljs-built_in,
+    .hljs-identifier,
+    .vhdl .hljs-literal,
+    .hljs-id,
+    .css .hljs-function,
+    .hljs-name { color: #268bd2 }
+    /* Solarized Yellow */
+    .hljs-attribute,
+    .hljs-variable,
+    .lisp .hljs-body,
+    .smalltalk .hljs-number,
+    .hljs-constant,
+    .hljs-class .hljs-title,
+    .hljs-parent,
+    .hljs-type,
+    .hljs-link_reference { color: #b58900 }
+    /* Solarized Orange */
+    .hljs-preprocessor,
+    .hljs-preprocessor .hljs-keyword,
+    .hljs-pragma,
+    .hljs-shebang,
+    .hljs-symbol,
+    .hljs-symbol .hljs-string,
+    .diff .hljs-change,
+    .hljs-special,
+    .hljs-attr_selector,
+    .hljs-subst,
+    .hljs-cdata,
+    .css .hljs-pseudo,
+    .hljs-header { color: #cb4b16 }
+    /* Solarized Red */
+    .hljs-deletion,
+    .hljs-important { color: #dc322f }
+    /* Solarized Violet */
+    .hljs-link_label { color: #6c71c4 }
+    .tex .hljs-formula { background: #eee8d5 }
+
+    /* 视频部分 */
+    .video-package {
+      position: relative;
+      width: 100%;
+      margin: 0 auto 25px;
+      line-height: 1;
+      text-align: center;
+    }
+    .video-package div.video-player {
+      margin: 0px;
+      padding: 0px;
+      background-color: black;
+      overflow: hidden;
+    }
+    .video-package div.video-placeholder {
+      position: relative;
+      display: inline-block;
+      box-sizing: border-box;
+      background: black;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+    .video-package div.video-placeholder:before {
+      content: '努力加载视频中，请稍候！';
+      position: absolute;
+      top: 50%;
+      left: 0px;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      padding-top: 40px;
+      padding-left: 10px;
+      color: white;
+      font-size: 24px;
+    }
+    .video-package .video-placeholder-area {
+      position: relative;
+      display: inline-block;
+      min-height: 110px;
+      padding: 10px;
+      padding-left: 110px;
+      box-sizing: border-box;
+      border: 1px solid #d5d5d5;
+      text-align: left;
+      cursor: pointer;
+    }
+    .video-package .video-placeholder-area:after {
+      content: ' ';
+      position: absolute;
+      top: 9px;
+      left: 9px;
+      display: block;
+      width: 90px;
+      height: 90px;
+      background-color: rgba(0, 0, 0, 0.3);
+      background-image: url(http://cdn-qn0.jianshu.io/assets/play-btn-505b83790aefbf01d434dc6cf86160a9.png);
+      background-position: 20px;
+      background-size: 50px;
+      background-repeat: no-repeat;
+      transition: all linear 100ms;
+    }
+    .video-package .video-placeholder-area .video-cover {
+      position: absolute;
+      top: 9px;
+      left: 9px;
+      display: block;
+      width: 90px;
+      height: 90px;
+      opacity: 0.8;
+      transition: opacity linear 100ms;
+    }
+    .video-package .video-close-button,
+    .video-package .video-provider-button {
+      float: left;
+      font-size: 14px;
+      padding: 0px;
+      margin-top: 10px;
+      line-height: 14px;
+      cursor: pointer;
+      transition: opacity linear 100ms;
+    }
+    .video-package .video-provider-button {
+      float: right;
+    }
+    .video-package i.fa {
+      position: relative;
+      top: 2px;
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      background-size: 14px;
+    }
+    .video-package i.fa.fa-eject {
+      background-image: url(http://cdn-qn0.jianshu.io/assets/eject-d-4c9aac52c94a9210b91e5072964f7e6c.png);
+    }
+    .reader-night-mode .video-package i.fa.fa-eject {
+      background-image: url(http://cdn-qn0.jianshu.io/assets/eject-n-4ce38093b99bed5984b36f917e6d7f99.png);
+    }
+    .video-package i.fa.fa-external-link {
+      background-image: url(http://cdn-qn0.jianshu.io/assets/extlink-d-5ce0821e25b443c89ee14d60b928a9ac.png);
+    }
+    .reader-night-mode .video-package i.fa.fa-external-link {
+      background-image: url(http://cdn-qn0.jianshu.io/assets/extlink-n-97b7c16904ccedf9c664bd708571dd26.png);
+    }
+    @media (max-width: 400px) {
+      .video-package div.video-placeholder:before {
+        font-size: 20px;
+      }
+    }
+    .video-package div.video-placeholder:after {
+      content: ' ';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 90px;
+      height: 90px;
+      margin-top: -65px;
+      margin-left: -45px;
+      background-image: url(http://cdn-qn0.jianshu.io/assets/play-btn-505b83790aefbf01d434dc6cf86160a9.png);
+      background-size: 90px 90px;
+    }
+    .video-package .video-description {
+      /*display: inline-block;*/
+      display: none;
+      min-width: 20%;
+      min-height: 20px;
+      border-bottom: 1px solid #d9d9d9;
+      margin: 0 auto;
+      padding: 10px;
+      font-size: 14px;
+      color: #999;
+      font-style: italic;
+      line-height: 150%;
+    }
+    .video-package .video-description:empty { display: none; }
+    .video-package iframe.player {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /*黑夜模式*/
+    .reader-night-mode { background-color: #3f3f3f }
+    .reader-night-mode .content,
+    .reader-night-mode .content table { color: #b1b1b1 }
+    .reader-night-mode hr,
+    .reader-night-mode img,
+    .reader-night-mode table,
+    .reader-night-mode table th,
+    .reader-night-mode table td,
+    .reader-night-mode blockquote { border-color: #2f2f2f }
+    .reader-night-mode .image-package .image-caption,
+    .reader-night-mode .video-package .video-description,
+    .reader-night-mode .video-package .video-placeholder-area { border-color: #262626 }
+    .reader-night-mode table td,
+    .reader-night-mode table th,
+    .reader-night-mode blockquote { background-color: #555 }
+    .reader-night-mode pre,
+    .reader-night-mode code,
+    .reader-night-mode .hljs {
+      background-color: #002b36;
+      color: #839496;
+    }
+    .reader-night-mode .hljs-comment,
+    .reader-night-mode .diff .hljs-header,
+    .reader-night-mode .hljs-doctype,
+    .reader-night-mode .hljs-pi,
+    .reader-night-mode .lisp .hljs-string { color: #586e75 }
+    .reader-night-mode .tex .hljs-formula { background: #073642 }
+
+    /*-----设置字体大小-----*/
+    /*小号字体*/
+    .small-size h1 { font-size: 22px }
+    .small-size h2 { font-size: 20px }
+    .small-size h3 { font-size: 18px }
+    .small-size h4 { font-size: 16px }
+    .small-size h5,
+    .small-size h6 { font-size: 15px }
+    .small-size hr { margin-bottom: 23px }
+    .small-size blockquote {
+      margin-bottom: 20px;
+      padding: 18px;
+      border-left-width: 3px;
+    }
+    .small-size blockquote p:last-child { margin-bottom: 0 }
+    .small-size ol,
+    .small-size ul {
+      padding-left: 36px;
+      margin-bottom: 20px;
+    }
+    .small-size ol li ol,
+    .small-size ul li ul { margin-top: 12px }
+    .small-size pre { margin-bottom: 22px }
+    .small-size table { margin-bottom: 22px }
+    .small-size table th,
+    .small-size table td {
+      padding: 7px;
+      line-height: 23px;
+    }
+    .small-size .image-package,
+    .small-size .video-package { margin-bottom: 22px }
+    .small-size .content { font-size: 15px }
+    .small-size .content p { margin-bottom: 18px }
+    /*大号字体*/
+    .big-size h1 { font-size: 27px }
+    .big-size h2 { font-size: 25px }
+    .big-size h3 { font-size: 23px }
+    .big-size h4 { font-size: 21px }
+    .big-size h5,
+    .big-size h6 { font-size: 19px }
+    .big-size hr { margin-bottom: 27px }
+    .big-size blockquote {
+      margin-bottom: 30px;
+      padding: 22px;
+    }
+    .big-size blockquote p:last-child { margin-bottom: 0 }
+    .big-size ol,
+    .big-size ul {
+      padding-left: 44px;
+      margin-bottom: 28px;
+    }
+    .big-size ol li ol,
+    .big-size ul li ul { margin-top: 16px }
+    .big-size pre { margin-bottom: 28px }
+    .big-size code { font-size: 14px }
+    .big-size table { margin-bottom: 25px }
+    .big-size table th,
+    .big-size table td {
+      padding: 10px;
+      font-size: 19px;
+    }
+    .big-size .content { font-size: 19px }
+    .big-size .content p { margin-bottom: 22px }
+    /*特大号字体*/
+    .large-size h1 { font-size: 27px }
+    .large-size h2 { font-size: 26px }
+    .large-size h3 { font-size: 25px }
+    .large-size h4 { font-size: 24px }
+    .large-size h5 { font-size: 23px }
+    .large-size h6 { font-size: 22px }
+    .large-size hr { margin-bottom: 30px }
+    .large-size blockquote {
+      margin-bottom: 30px;
+      padding: 22px;
+    }
+    .large-size blockquote p:last-child { margin-bottom: 0 }
+    .large-size ol,
+    .large-size ul {
+      padding-left: 44px;
+      margin-bottom: 28px;
+    }
+    .large-size ol li ol,
+    .large-size ul li ul { margin-top: 16px }
+    .large-size pre { margin-bottom: 30px }
+    .large-size code { font-size: 18px }
+    .large-size table { margin-bottom: 25px }
+    .large-size table th,
+    .large-size table td {
+      padding: 10px;
+      font-size: 22px;
+    }
+    .large-size .content { font-size: 22px }
+    .large-size .content p { margin-bottom: 24px }
+    a.video-link {
+      color: inherit;
+    }
+  </style>
+
+<style type="text/css">
+  /* 内容预加载loading样式*/
+  .content .img-center::after {
+    content: ".";
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0;
+  }
+  .content .img-center img {
+    vertical-align: middle;
+    border: none;
+  }
+</style>
+  </head>
+  <body class="reader-day-mode normal-size">
+    <div class="content">
+      <div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1133568-b416427d60498231.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br><div class="image-caption">云峰小罗手机拍摄</div>
+</div><p><br></p><p><br></p><p>刚刚毕业找工作时，整理了一些C/C++基础问题和答案，有些是日常遇到的问题，有些是网上其他人的分享，其中涉及到程序输出的问题我都亲自编程验证过，在问题后面也用红色字体标注了“<b>验证by云峰小罗</b>”。最近应该还有些毕业生还在找工作，所以分享出来，希望能有些帮助，毕竟我当年毕业时就是对这些题目特别留心，然后顺利校招进入鹅厂的。本文先介绍C/C++语法类原理类题目，关于计算机、网络、操作系统原理和常考算法请参考：<a href="http://www.jianshu.com/p/281ff5776623" target="_blank">C/C++基础问题和答案汇总（二）</a><br></p><h2>1、C++虚函数实现机制<br>
+</h2><p>      一个拥有virtual成员函数的类拥有一个虚函数表，而该类的每个对象都拥有一个虚指针，指向该类的虚函数表。运行时，通过对象自己的虚指针去索引正确的虚函数来运行。若基类中的virtual函数返回类型为基类型的引用或者指针，则派生类中重写该函数，需要将返回类型改为派生类类型的引用或者指针。</p><p>      在C++的标准规格说明书中说到，编译器必需要保证虚函数表的指针存在于对象实例中最前面的位置（这是为了保证正确取到虚函数的偏移量）。这意味着我们通过对象实例的地址得到这张虚函数表，然后就可以遍历其中函数指针，并调用相应的函数。</p><blockquote>
+<p>using namespace std;</p>
+<p>class Base {</p>
+<p>public:</p>
+<p>virtual void f() { cout << "Base::f" << endl; }</p>
+<p>virtual void g() { cout << "Base::g" << endl; }</p>
+<p>virtual void h() { cout << "Base::h" << endl; }</p>
+<p>};</p>
+<p>int main()</p>
+<p>{</p>
+<p>typedef void(*Fun)(void);</p>
+<p>Base b;</p>
+<p>Fun pFun = NULL;</p>
+<p>cout << "虚函数表地址：" <<(int*)(&b)<< endl;</p>
+<p>cout << "虚函数表—第一个函数地址：" <<(int*)*(int*)(&b)<< endl;// Invoke the first virtual function</p>
+<p>pFun=(Fun)*((int*)*(int*)(&b)+0);// Base::f()</p>
+<p>pFun();</p>
+<p>pFun=(Fun)*((int*)*(int*)(&b)+1);// Base::g()</p>
+<p>pFun();</p>
+<p>pFun=(Fun)*((int*)*(int*)(&b)+2);// Base::h()</p>
+<p>pFun();</p>
+<p>return 0;</p>
+<p>}<b>// VC++6.0验证by云峰小罗</b></p>
+</blockquote><p>我们可以通过强行把&b转成int *，取得虚函数表的地址，然后，再次取址就可以得到第一个虚函数的地址了，也就是Base::f()，这在上面的程序中得到了验证（把int*强制转成了函数指针）。</p><h2>2、有了malloc/free为什么还要new/delete？</h2><p>malloc与free是C++/C语言的标准库函数，new/delete是C++的运算符。它们都可用于申请动态内存和释放内存。对于非内部数据类型的对象而言，光用maloc/free无法满足动态对象的要求。对象在创建的同时要自动执行构造函数，对象在消亡之前要自动执行析构函数。<b>由于malloc/free是库函数而不是运算符，不在编译器控制权限之内，不能够把执行构造函数和析构函数的任务强加于malloc/free。</b>因此C++语言需要一个能完成动态内存分配和初始化工作的运算符new，以及一个能完成清理与释放内存工作的运算符delete。注意new/delete不是库函数。既然new/delete的功能完全覆盖了malloc/free，为什么C++不把malloc/free淘汰出局呢？这是因为C++程序经常要调用C函数，而C程序只能用malloc/free管理动态内存。</p><h2>3、类成员函数的重载、覆盖和隐藏区别？</h2><p>a.成员函数被重载的特征：</p><blockquote>
+<p>（1）相同的范围（在同一个类中）；</p>
+<p>（2）函数名字相同；</p>
+<p>（3）参数不同；</p>
+<p>（4）virtual关键字可有可无。</p>
+</blockquote><p>b.覆盖是指派生类函数覆盖基类函数，特征是：</p><blockquote>
+<p>（1）不同的范围（分别位于派生类与基类）；</p>
+<p>（2）函数名字相同；</p>
+<p>（3）参数相同；</p>
+<p>（4）基类函数必须有virtual关键字。</p>
+</blockquote><p>c.“隐藏”是指派生类的函数屏蔽了与其同名的基类函数，规则如下：</p><blockquote>
+<p>（1）如果派生类的函数与基类的函数同名，但是参数不同。此时，不论有无virtual关键字，基类的函数将被隐藏（注意别与重载混淆）。</p>
+<p>（2）如果派生类的函数与基类的函数同名，并且参数也相同，但是基类函数没有virtual关键字。此时，基类的函数被隐藏（注意别与覆盖混淆）</p>
+</blockquote><h2>4、<b>简述数组与指针的区别？</b>
+</h2><p>数组要么在静态存储区被创建（如全局数组），要么在栈上被创建。指针可以随时指向任意类型的内存块。</p><p>(1)修改内容上的差别</p><blockquote>
+<p>char a[] = “hello”;</p>
+<p>a[0] = ‘X’;</p>
+<p>char *p = “world”; //注意p指向常量字符串</p>
+<p>p[0] = ‘X’; //编译器不能发现该错误，运行时错误。<b>VC++ 6.0验证by云峰小罗</b></p>
+</blockquote><p>(2)用运算符sizeof可以计算出数组的容量（字节数）。sizeof(p),p为指针得到的是一个指针变量的字节数，而不是p所指的内存容量。</p><h2>5、构造函数为什么不能是虚函数？</h2><p>（1）从存储空间角度</p><blockquote><p>虚函数对应一个vtable，这大家都知道，可是这个vtable其实是存储在对象的内存空间的。问题出来了，如果构造函数是虚的，就需要通过vtable来调用，可是对象还没有实例化，也就是内存空间还没有，怎么找vtable呢？所以构造函数不能是虚函数。</p></blockquote><p>（2）从使用角度</p><blockquote><p>虚函数主要用于在信息不全的情况下，能使重载的函数得到对应的调用。构造函数本身就是要初始化实例，那使用虚函数也没有实际意义呀。所以构造函数没有必要是虚函数。</p></blockquote><p>（3）从虚函数的作用</p><blockquote><p>虚函数的作用是在于通过父类的指针或者引用来调用它的时候能够变成调用子类的那个成员函数。而构造函数是在创建对象时自动调用的，不可能通过父类的指针或者引用去调用，因此也就规定构造函数不能是虚函数。</p></blockquote><h2>6、智能指针实现原理</h2><p>当类中有指针成员时，一般有两种方式来管理指针成员：一是采用值型的方式管理，每个类对象都保留一份指针指向的对象的拷贝；另一种更优雅的方式是使用智能指针，从而实现指针指向的对象的共享。</p><p><b>智能指针(smart pointer)的一种通用实现技术是使用引用计数(reference count)。智能指针类将一个计数器与类指向的对象相关联，引用计数跟踪该类有多少个对象共享同一指针。</b>每次创建类的新对象时，初始化指针并将引用计数置为1；当对象作为另一对象的副本而创建时，拷贝构造函数拷贝指针并增加与之相应的引用计数；对一个对象进行赋值时，赋值操作符减少左操作数所指对象的引用计数（如果引用计数为减至0，则删除对象），并增加右操作数所指对象的引用计数；调用析构函数时，构造函数减少引用计数（如果引用计数减至0，则删除基础对象）。</p><h2>7、含参数的宏与函数的优缺点</h2><p><b>宏优点：</b>在预处理阶段完成，不占用编译时间，同时，省去了函数调用的开销，运行效率高</p><p><b>宏缺点：</b>不进行类型检查，多次宏替换会导致代码体积变大，而且由于宏本质上是字符串替换，故可能会由于一些参数的副作用导致得出错误的结果。</p><blockquote><p>例如：#define max(a, b)   ( ((a) > (b)) ? (a) : (b) )如果程序中出现这样的调用: max(a++, b);将导致a被计算2次,从而可能得到错误的结果,而函数调用不会出现这种问题.</p></blockquote><p><b>函数优点：</b>没有带参数宏可能导致的副作用，进行类型检查，计算的正确性更有保证。</p><p><b>函数缺点：</b>函数调用需要参数、返回地址等的入栈、出栈开销，效率没有带参数宏高。</p><h2>8、以下三条输出语句分别输出什么？</h2><blockquote>
+<p>char str1[]       = "abc";</p>
+<p>char str2[]       = "abc";</p>
+<p>const char str3[] = "abc";</p>
+<p>const char str4[] = "abc";</p>
+<p>const char* str5  = "abc";</p>
+<p>const char* str6  = "abc";</p>
+<p>cout << boolalpha << ( str1==str2 ) << endl; //输出什么？</p>
+<p>cout << boolalpha << ( str3==str4 ) << endl; //输出什么？</p>
+<p>cout << boolalpha << ( str5==str6 ) << endl; //输出什么？</p>
+</blockquote><p>答： 分别输出false,false,true。str1和str2都是字符数组，每个都有其自己的存储区，它们的值则是各存储区首地址，不等；str3和str4同上，只是按const语义，它们所指向的数据区不能修改。str5和str6并非数组而是字符指针，并不分配存储区，其后的“abc”以常量形 式存于静态数据区，而它们自己仅是指向该区首地址的指针，相等。<b>VC++6.0中验证by云峰小罗</b></p><h2><b>9、宏与枚举的区别</b></h2><p>宏定义字符常量，不分配内存空间，而枚举是定义变量的一种方式。</p><blockquote><p>宏和枚举之间的差别主要在作用的时期和存储的形式不同，宏是在预处理的阶段进行替换工作的，它替换代码段的文本，程序运行的过程中宏已不存在了。而枚举是在程序运行之后才起作用的，枚举常量存储在数据段的静态存储区里。宏占用代码段的空间，而枚举除了占用空间，还消耗CPU资源。但也不能就此说宏比枚举好，如果需要定义非常多的常量，用一条enum   {.....}明显比一大堆define更清晰，枚举也可以用来定义一些特殊类型，比如Bool，如：type   enum   {FALSE,TRUE}   Bool;</p></blockquote><h2>10、在什么时候需要使用“常引用”？</h2><p>如果既要利用引用提高程序的效率，又要保护传递给函数的数据不在函数中被改变，就应使用常引用。</p><blockquote>
+<p>string foo( );</p>
+<p>void bar(string & s);</p>
+<p>那么下面的表达式将是非法的：</p>
+<p>bar(foo( ));</p>
+<p>bar("hello world");</p>
+<p>原因在于foo( )和"hello world"串都会产生一个临时对象，而在C++中，这些临时对象都是const类型的。因此上面的表达式就是试图将一个const类型的对象转换为非const类型，这是非法的。</p>
+<p>引用型参数应该在能被定义为const的情况下，尽量定义为const。</p>
+<p>改成: void bar(const string &str)就两个都正确// <b>VC++6.0验证通过by云峰小罗</b></p>
+</blockquote><p><br></p><h2>11、如何判断一段程序是由C编译程序还是由C++编译程序编译的？</h2><blockquote>
+<p>#ifdef __cplusplus//C++编译器定义了-cplusplus</p>
+<p>cout<<"c++";</p>
+<p>#else</p>
+<p>cout<<"c";</p>
+<p>#endif//<b>VC6.0验证通过by云峰小罗</b></p>
+</blockquote><p><b><br></b></p><h2>12、C++的类和C里面的struct有什么区别？</h2><p>从语法上，在C++中（只讨论C++中）。class和struct做类型定义时只有两点区别：</p><blockquote>
+<p>（一）默认继承权限。如果不明确指定，来自class的继承按照private继承处理，来自struct的继承按照public继承处理；</p>
+<p>（二）成员的默认访问权限。class的成员默认是private权限，struct默认是public权限。</p>
+</blockquote><p>除了这两点，class和struct基本就是一个东西。语法上没有任何其它区别</p><blockquote>
+<p>（1）都可以有成员函数；包括各类构造函数，析构函数，重载的运算符，友元类，友元结构，友元函数，虚函数，纯虚函数，静态函数；</p>
+<p>（2）都可以有一大堆public/private/protected修饰符在里边；</p>
+<p>（3）虽然这种风格不再被提倡，但语法上二者都可以使用大括号的方式初始化：A a = {1, 2, 3};不管A是个struct还是个class，前提是这个类/结构足够简单，比如所有的成员都是public的，所有的成员都是简单类型，没有显式声明的构造函数。</p>
+<p>（4）都可以进行复杂的继承甚至多重继承，一个struct可以继承自一个class，反之亦可；一个struct可以同时继承5个class和5个struct，虽然这样做不太好。</p>
+<p>（5）如果说class的设计需要注意OO的原则和风格，那么没任何理由说设计struct就不需要注意。</p>
+<p>（6）再次说明，以上所有说法都是指在C++语言中，至于在C里的情况，C里是根本没有“class”，而C的struct从根本上也只是个包装数据的语法机制。struct属性访问权限只有public，没有数据封装功能，也就没有实现信息隐藏这一面向对象的思想的机制,struct本身不含有操作函数，只有数据。</p>
+</blockquote><p>最后，作为语言的两个关键字，除去定义类型时有上述区别之外，另外还有一点点：“class”这个关键字还用于定义模板参数，就像“typename”。但关键字“struct”不用于定义模板参数。</p>
+    </div>
+
+    <script src="http://static0.jianshu.io/mobile-app-page-v1.js"></script>
+    <script type="text/javascript">
+    function setFontsizeSmall() {
+      $('body').removeClass('big-size').removeClass('large-size').addClass('small-size');
+    }
+    function setFontsizeNormal() {
+      $('body').removeClass('big-size').removeClass('large-size').removeClass('small-size');
+    }
+    function resetFontsize() {
+      $('body').removeClass('big-size').removeClass('large-size').removeClass('small-size');
+    }
+    function setFontsizeBig() {
+      $('body').removeClass('small-size').removeClass('large-size').addClass('big-size');
+    }
+    function setFontsizeLarge() {
+      $('body').removeClass('small-size').removeClass('big-size').addClass('large-size');
+    }
+    function setDayMode() {
+      $('body').removeClass('reader-night-mode').addClass('reader-day-mode');
+    }
+    function setNightMode() {
+      $('body').removeClass('reader-day-mode').addClass('reader-night-mode');
+    }
+    var Maleskine = {};
+    function setImageSrc(src, path) {
+      var $el = $(Maleskine.allImages[src.split('?')[0]]);
+      if( $el.length > 0) {
+        $el.attr('src', path);
+      }
+    }
+    function markRead(){
+      if (window.WebViewJavascriptBridge) {
+        window.WebViewJavascriptBridge.callHandler("Handler.MarkNote", "");
+      } else {
+        document.addEventListener('WebViewJavascriptBridgeReady', function() {
+          window.WebViewJavascriptBridge.callHandler("Handler.MarkNote", "");
+        }, false);
+      }
+    }
+    function reachedBottom() {
+      return window.innerHeight + window.scrollY + 50 >= document.body.offsetHeight;
+    }
+    document.addEventListener("DOMContentLoaded", function(event) {
+      Maleskine.allImages = {};
+      Maleskine.allImageKeys = [];
+      Maleskine.allOriginImageKeys = [];
+
+      // Extract all images
+      var maleskineImageElements = $('.image-package img');
+      for (var i = 0, n = maleskineImageElements.length; i < n; i++) {
+        var $el = $(maleskineImageElements[i]);
+        Maleskine.allOriginImageKeys.push($el.data('original-src'));
+        Maleskine.allImageKeys.push($el.attr('src'));
+        Maleskine.allImages[$el.attr('src').split('?')[0]] = $el[0];
+      }
+      // console.log(" Found " + $('.image-package img').length + " images.");
+      $('.image-package img').on('click', function(e){
+        console.log(" Image clicked");
+        var src = $(e.target).attr('src');
+        window.imageListener.previewImage(src, Maleskine.allImageKeys, Maleskine.allOriginImageKeys);
+        // window.imageListener.previewImage(Maleskine.allImageKeys.indexOf(src), Maleskine.allImageKeys, Maleskine.allOriginImageKeys);
+      });
+
+      // For Video
+      var MAX_VIDEO_COUNT = 10;
+      var video_maker = function (url, width, height, provider, flash) {
+        if (provider === 'bilibili') {
+          player = '<div class="video-player player">';
+          player += '<video width="' + width + '" height="' + height + '" preload="meta" controls="true">';
+          player += '<source src="' + url + '" type="video/mp4">';
+          player += '<object type="application/x-shockwave-flash" data="http://static.hdslb.com/play.swf" class="flash" style="width:' + width + 'px; height:' + height + 'px;">';
+          player += '<param name="bgcolor" value="#ffffff">';
+          player += '<param name="allowfullscreeninteractive" value="true">';
+          player += '<param name="allowfullscreen" value="true">';
+          player += '<param name="quality" value="high">';
+          player += '<param name="allowscriptaccess" value="always">';
+          player += '<param name="wmode" value="direct">';
+          player += '<param name="flashvars" value="' + flash + '">';
+          player += '</object>';
+          player += '</video>';
+          player += '</div>';
+        }
+        else {
+          player = '<iframe class="player" src="' + url + '" height="' + height + '" width="' + width + '" frameborder=0 allowfullscreen style="width:' + width + 'px; height:' + height + 'px;"></iframe>';
+        }
+        if (!player) player = '<div class="video-placeholder"></div>';
+        return player;
+      };
+      var doesVideoURLAvailable = function (url) {
+        // if (url.indexOf('../../') === 0) return true;
+        check = /^https?:\\/\\/(?:[\\w\\.]*?\\.(?:youku|tudou|qq|bilibili)\\.com|[\\w\\.\\-]*?\\.acgvideo\\.com)\\//i;
+        return !!(url.match(check));
+      };
+      var getVideoCoverImage = function (uuid, dimension) {
+        var result = '';
+        if (dimension) {
+          result = "http://upload.jianshu.io/videos/cover_imgs/" + uuid + "?imageView2/1/w/" + dimension + "/h/" + dimension;
+        }
+        else {
+          result = "http://upload.jianshu.io/videos/cover_imgs/" + uuid;
+        }
+        return result;
+      };
+      var width = $(window).width() - 16; // 16 is the padding
+      if (width > 480) width = 480;
+      else width = Math.round(width);
+      var height = Math.round(width / 6 * 5); // 5/6 is the ratio
+      $('div.video-package').each(function (index, pkg) {
+        pkg = $(pkg);
+        if (index >= MAX_VIDEO_COUNT) {
+          pkg.remove();
+          return;
+        }
+        var url = pkg.attr('data-video-url'), img = pkg.attr('data-preview-url');
+        if (!(url && doesVideoURLAvailable(url))) {
+          pkg.remove();
+          return;
+        }
+        var provider = pkg.attr('data-provider');
+        var flash = pkg.attr('data-flash-url');
+        // var player = $(video_maker(url, width, height, provider, flash));
+        var cover = pkg.attr('data-cover-uuid');
+        var caption = pkg.find('.video-description');
+        var captionContent = caption.html();
+        var placeholder = $('<div class="video-placeholder-area">' + captionContent + '</div>');
+        placeholder.css({'width': width + 'px'});
+        var videoCover = $('<img class="video-cover">');
+        videoCover.attr('src', getVideoCoverImage(cover, 90));
+        placeholder.append(videoCover);
+        caption.html('');
+        pkg.find('br').before(placeholder);
+        var closeBtn = $('<div class="video-close-button"><i class="fa fa-eject"></i> 收起视频</div>');
+        closeBtn.css({display: 'none'});
+        var providerBtn = $('<div class="video-provider-button"><i class="fa fa-external-link"></i> 转到视频页</div>');
+        providerBtn.css({display: 'none'});
+        if (provider === 'bilibili') {
+          closeBtn.css({'margin-top': '-10px'});
+          providerBtn.css({'margin-top': '-10px'});
+          origin = flash.split('&').filter(function (info) {
+            return info.indexOf('aid') >= 0;
+          });
+          if (origin.length > 0) {
+            origin = origin[0];
+            origin = origin.split('=');
+            origin = origin[1] || '';
+          }
+          else {
+            origin = '';
+          }
+          if (origin === '') {
+            origin = 'http://www.bilibili.com/';
+          }
+          else {
+            origin = 'http://www.bilibili.com/video/av' + origin + '/';
+          }
+          providerBtn.on('click', function () {
+            window.open(origin);
+          });
+        }
+        pkg.append(closeBtn);
+        pkg.append(providerBtn);
+        pkg.wrap('<a class="video-link" href="' + url + '" target="_blank"></a>'); // Jump to video page
+        var show = false;
+        // placeholder.on('click', function () {
+        //   if (show) return
+        //   show = true;
+        //   placeholder.after(player);
+        //   first = false;
+        //   placeholder.hide();
+        //   // caption.html(captionContent);
+        //   pkg.css({'margin-bottom': '50px'});
+        //   closeBtn.css({display: 'block'});
+        //   if (provider === 'bilibili') {
+        //     providerBtn.css({display: 'block'});
+        //   }
+        // });
+        // closeBtn.on('click', function () {
+        //   if (!show) return;
+        //   show = false;
+        //   player.remove();
+        //   placeholder.show();
+        //   // caption.html('');
+        //   pkg.css({'margin-bottom': ''});
+        //   closeBtn.css({display: 'none'});
+        //   providerBtn.css({display: 'none'});
+        // });
+      });
+
+      // mark read
+      if (reachedBottom()){
+        window.setTimeout(markRead, 1000);
+      } else {
+        window.onscroll = function(event){
+          if (reachedBottom()){
+            markRead();
+            window.onscroll = null;
+          }
+        }
+      }
+    });
+    </script>
+  </body>
+</html>

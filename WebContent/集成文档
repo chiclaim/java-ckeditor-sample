@@ -1,5 +1,0 @@
-http://blog.csdn.net/blueboz/article/details/50181665
-
-<baseURL>/java-ckeditor-sample/CKFinderJava/userfiles/</baseURL>
-java-ckeditor-sample表示工程名
-CKFinderJava/userfiles 文件夹名会在tomcat工程目录下生成
